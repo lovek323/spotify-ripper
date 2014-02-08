@@ -18,6 +18,7 @@ YMMV.
 * [Install libspotify](https://developer.spotify.com/technologies/libspotify/#libspotify-downloads)
 * Add your credentials to `config.json`
 * Add the destination directory to `config.json`
+* Create an empty `queue.json`
 * Run `virtualenv env` (if you don't have virtualenv installed, install it)
 * Run `source env/bin/activate`
 * Run `pip -r requirements.txt --allow-unverified PyAudio --allow-unverified
@@ -34,6 +35,12 @@ YMMV.
 }
 ```
 
+## Example `queue.json`
+
+```json
+{ }
+```
+
 
 # TODO
 
@@ -43,3 +50,9 @@ YMMV.
 * Allow ordering of queue.json
 * Document more things
 * Make a better config reader
+* Create `queue.json` if it doesn't exist
+
+
+# Screenshot
+
+![screenshot, yeah!](https://raw.github.com/lovek323/spotify-ripper/master/screen.png)
