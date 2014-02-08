@@ -7,6 +7,7 @@ from subprocess import PIPE, Popen
 
 import os
 import sys
+import time
 
 class Ripper(Jukebox):
     _all_processes = [ ]
@@ -63,10 +64,18 @@ class Ripper(Jukebox):
         with indent(3, quote = colored.white(' > ')):
             if self._json_queue.is_downloaded(Link.from_track(track)) \
                     or os.path.isfile(mp3_path):
-                puts('Skipping %s' % mp3_path)
+                try:
+                    puts('Skipping %s' % mp3_path)
+                except UnicodeEncodeError:
+                    # Non-ASCII characters
+                    sys.stdout.write(' > Skipping %s\n' % mp3_path)
                 return False
             else:
-                puts('Downloading %s' % mp3_path)
+                try:
+                    puts('Downloading %s' % mp3_path)
+                except UnicodeEncodeError:
+                    # Non-ASCII characters
+                    sys.stdout.write(' > Downloading %s\n' % mp3_path)
 
             album   = track.album().name()
             title   = track.name()
@@ -85,9 +94,19 @@ class Ripper(Jukebox):
 
             puts('Track URI:    %s'        % Link.from_track(track))
             puts('Album:        %s (%i)'   % (album, year))
-            puts('Artist(s):    %s'        % artists)
+
+            try:
+                puts('Artist(s):    %s'        % artists)
+            except UnicodeEncodeError:
+                sys.stdout.write(' > Artist(s):    %s\n' % artists)
+
             puts('Album artist: %s'        % track.album().artist().name())
-            puts('Track:        %s-%s. %s' % (disc, number, title))
+
+            try:
+                puts('Track:        %s-%s. %s' % (disc, number, title))
+            except UnicodeEncodeError:
+                sys.stdout.write(' > Track:        %s-%s. %s \n' \
+                        % (disc, number, title))
 
         command = 'lame -b 320 -h -r --silent - temp.mp3'
         p = Popen(command, stdin=PIPE, shell=True)
@@ -189,11 +208,18 @@ class Ripper(Jukebox):
         print ''
 
         with indent(3, quote = colored.cyan(' # ')):
-            puts('Executing %s' % cmd)
+            try:
+                puts('Executing %s' % cmd)
+            except UnicodeEncodeError:
+                sys.stdout.write(' # Executing %s\n' % cmd)
 
             self._util.shell(cmd)
 
-            puts('Moving %s to %s' % ('temp.mp3', mp3_path))
+            try:
+                puts('Moving %s to %s' % ('temp.mp3', mp3_path))
+            except UnicodeEncodeError:
+                sys.stdout.write(' # Moving %s to %s\n' \
+                        % ('temp.mp3', mp3_path))
 
         # move mp3 to final directory
         cmd = 'mv temp.mp3 %s' % mp3_path

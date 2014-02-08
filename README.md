@@ -51,6 +51,7 @@ YMMV.
 * Document more things
 * Make a better config reader
 * Create `queue.json` if it doesn't exist
+* Handle unicode output better (may need to replace `clint`)
 
 
 # Screenshot
