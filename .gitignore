@@ -1,0 +1,13 @@
+*.mp3
+*.pyc
+.DS_Store
+config.json
+cover.jpg
+downloaded
+env
+not_available
+queue
+queue.json
+spotify_appkey.key
+temp.mp3
+tmp

@@ -1,0 +1,7 @@
+PyAudio==0.2.7
+args==0.1.0
+clint==0.3.4
+eyeD3==0.7.4
+pyspotify==1.11
+python-magic==0.4.6
+wsgiref==0.1.2
