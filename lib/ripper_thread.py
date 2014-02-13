@@ -76,7 +76,8 @@ class RipperThread(Thread):
                 if album.type() == AlbumType.Compilation \
                         or album.artist().name().lower() == 'various artists' \
                         or 'the best of' in album.name().lower() \
-                        or 'the very best of' in album.name().lower():
+                        or 'the very best of' in album.name().lower() \
+                        or 'best of' in album.name().lower():
                     # print 'Skipping compilation %s' % album.name()
                     continue
 
@@ -110,7 +111,8 @@ class RipperThread(Thread):
                     if album.type() == AlbumType.Compilation \
                             or album.artist().name().lower() == 'various artists' \
                             or 'the best of' in album.name().lower() \
-                            or 'the very best of' in album.name().lower():
+                            or 'the very best of' in album.name().lower() \
+                            or 'best of' in album.name().lower():
                         # print 'Skipping compilation %s' % album.name()
                         continue
 
