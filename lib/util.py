@@ -83,7 +83,7 @@ class Util:
         return found
 
     def mark_as_not_available(self, link):
-        if not is_known_not_available(link):
+        if not self.is_known_not_available(link):
             f = open('not_available', 'a')
             f.write(str(link)+"\n")
             f.close()
