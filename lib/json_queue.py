@@ -16,22 +16,29 @@ class JsonQueue:
         link = str(Link.from_artist(artist))
 
         if not self._items:
-            self._items = { }
+            self._items = [ ]
 
             with open('queue.json', 'r') as fp:
                 self._items = json.load(fp)
 
-        if not link in self._items:
+        found = False
+
+        for item in self._items:
+            if item['link'] == link:
+                found = True
+                break
+
+        if not found:
             while not artist.is_loaded():
                 time.sleep(0.1)
 
             print 'Adding %s' % artist.name()
 
-            self._items[link] = {
+            self._items.append({
                     'name':   artist.name(),
                     'link':   link,
                     'source': source,
-                    }
+                    })
 
             with open('queue.json', 'w') as fp:
                 json.dump(self._items, fp, indent=2)
@@ -50,7 +57,7 @@ class JsonQueue:
             # are no longer in the 'starred' album
             self._in_starred = False
 
-        retval = list(self._items)[self._position]
+        retval = self._items[self._position]['link']
         self._position += 1
 
         return retval
