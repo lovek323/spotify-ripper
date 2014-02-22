@@ -73,12 +73,7 @@ class RipperThread(Thread):
                 while not album_browser.is_loaded():
                     time.sleep(0.1)
 
-                if album.type() == AlbumType.Compilation \
-                        or album.artist().name().lower() == 'various artists' \
-                        or 'the best of' in album.name().lower() \
-                        or 'the very best of' in album.name().lower() \
-                        or 'best of' in album.name().lower():
-                    # print 'Skipping compilation %s' % album.name()
+                if self._util.is_compilation(album):
                     continue
 
                 if album.is_available():
@@ -108,12 +103,7 @@ class RipperThread(Thread):
                 itrack           = [ ]
 
                 for album in albums:
-                    if album.type() == AlbumType.Compilation \
-                            or album.artist().name().lower() == 'various artists' \
-                            or 'the best of' in album.name().lower() \
-                            or 'the very best of' in album.name().lower() \
-                            or 'best of' in album.name().lower():
-                        # print 'Skipping compilation %s' % album.name()
+                    if self._util.is_compilation(album):
                         continue
 
                     if album.is_available() and Link.from_album(album) \

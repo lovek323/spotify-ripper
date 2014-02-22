@@ -88,6 +88,20 @@ class Util:
             f.write(str(link)+"\n")
             f.close()
 
+    def is_compilation(self, album):
+        # TODO: Use regexes instead of a manual list
+        return album.type() == AlbumType.Compilation \
+                or album.artist().name().lower() == 'various artists' \
+                or 'anniversary' in album.name().lower() \
+                or 'best of' in album.name().lower() \
+                or 'collection' in album.name().lower() \
+                or 'greatest' in album.name().lower() \
+                or 'masterpieces' in album.name().lower() \
+                or 'the 99 most' in album.name().lower() \
+                or 'the best' in album.name().lower() \
+                or 'top 100' in album.name().lower() \
+                or 'treasures' in album.name().lower()
+
 class AlbumType:
     Album = 0
     Single = 1
