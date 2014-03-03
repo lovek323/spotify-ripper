@@ -93,7 +93,11 @@ class Ripper(Jukebox):
             artists = artists.strip().rstrip('/').rstrip()
 
             puts('Track URI:    %s'        % Link.from_track(track))
-            puts('Album:        %s (%i)'   % (album, year))
+
+            try:
+                puts('Album:        %s (%i)'   % (album, year))
+            except UnicodeEncodeError:
+                sys.stdout.write(' > Album:        %s (%i)\n' % (album, year))
 
             try:
                 puts('Artist(s):    %s'        % artists)
