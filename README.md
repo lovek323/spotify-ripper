@@ -21,8 +21,8 @@ YMMV.
 * Create an empty `queue.json`
 * Run `virtualenv env` (if you don't have virtualenv installed, install it)
 * Run `source env/bin/activate`
-* Run `pip -r requirements.txt --allow-unverified PyAudio --allow-unverified
-  eyeD3`
+* Run `pip install -r requirements.txt --allow-unverified PyAudio
+  --allow-unverified eyeD3`
 * Run `./run.py`
 
 ## Example `config.json`
