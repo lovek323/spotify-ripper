@@ -15,7 +15,10 @@ YMMV.
 # Getting started
 
 * Get a spotify app key and save it to `spotify_appkey.key`
-* [Install libspotify](https://developer.spotify.com/technologies/libspotify/#libspotify-downloads)
+* [Install libspotify](https://developer.spotify.com/technologies/libspotify/#libspotify-downloads)  
+  On OS X: `brew install homebrew/binary/libspotify`
+* Install portaudio  
+  On OS X: `brew install portaudio`
 * Add your credentials to `config.json`
 * Add the destination directory to `config.json`
 * Create an empty `queue.json`
