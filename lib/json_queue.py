@@ -15,12 +15,6 @@ class JsonQueue:
         """
         link = str(Link.from_artist(artist))
 
-        if not self._items:
-            self._items = [ ]
-
-            with open('queue.json', 'r') as fp:
-                self._items = json.load(fp)
-
         found = False
 
         for item in self._items:
@@ -49,7 +43,12 @@ class JsonQueue:
         """
         Get the next link in the queue (as a string).
         """
-        if not self._done_starred:
+        if not self._items:
+            self._items = [ ]
+
+            with open('queue.json', 'r') as fp:
+                self._items = json.load(fp)
+        if config_get('processStarred') and not self._done_starred:
             self._done_starred = True
             return 'spotify:user:'+config_get('username')+':starred'
         else:

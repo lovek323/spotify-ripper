@@ -34,7 +34,8 @@ YMMV.
 {
   "mp3_path": "/Volumes/Music",
   "username": "me",
-  "password": "password"
+  "password": "password",
+  "processStarred": true
 }
 ```
 
